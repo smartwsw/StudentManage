@@ -61,6 +61,14 @@ void CStudentView::OnDraw(CDC* pDC)
 {
 	CStudentDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
+	CSize sizeTotal, sizePage;
+	sizeTotal.cx = 100;
+	sizeTotal.cy = pDoc->StuNum * 20 + 20;
+	RECT rect;
+	GetClientRect(&rect);
+	sizePage.cx = rect.right - rect.left - 8;
+	sizePage.cy = rect.bottom - rect.top - 40;
+	SetScrollSizes(MM_TEXT, sizeTotal, sizePage, CSize(8, 20));
 	hello = this;
 	pDC->TextOutW(0, 0, (CString)"ÐÕÃû");
 	pDC->TextOutW(100, 0, (CString)"Ñ§ºÅ");
@@ -189,9 +197,9 @@ void CStudentView::OnSize(UINT nType, int cx, int cy)
 	// TODO: calculate the total size of this view
 	CSize sizeTotal, sizePage;
 	sizeTotal.cx = 100;
-	sizeTotal.cy = pDoc->StuNum * 20+20;
-	sizePage.cx = cx - 8;
-	sizePage.cy = cy - 20;
+	sizeTotal.cy = (pDoc->StuNum + 1) * 20;
+	sizePage.cx = cx ;
+	sizePage.cy = cy ;
 
 	SetScrollSizes(MM_TEXT, sizeTotal, sizePage, CSize(8, 20));
 

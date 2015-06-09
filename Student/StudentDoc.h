@@ -25,7 +25,7 @@ protected: // 仅从序列化创建
 
 // 特性
 public:
-	Student stu[100];
+	Student stu[1000];
 	int StuNum;
 	int Current;
 // 操作
